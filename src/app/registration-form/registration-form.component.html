@@ -1,0 +1,83 @@
+<div class="robot">
+    <img src="\assets\Mini-Robot.png" alt="Robot" class="robot-img">
+</div>
+<div class="container-fluid">
+    <h1 >Rizzz..! Registrations</h1>
+    <br>
+    <form #userForm="ngForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="name"><b>Name</b> </label>
+            <input type="text" required #name="ngModel" minlength="2" id="name" class="form-control"
+                [class.is-invalid]="name.invalid && name.touched" name="name" [(ngModel)]="userModel.name">
+            <div *ngIf="name.invalid && (name.dirty || name.touched)">
+                <small *ngIf="name.errors?.['required']" class="text-danger">name is required</small>
+                <small *ngIf="name.errors?.['minlength']" class="text-danger">name must be at least 2 characters
+                    long.</small>
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="email"><b>Email</b></label>
+            <input type="email" required #email="ngModel" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" id="email"
+                class="form-control" [class.is-invalid]="email.invalid && email.touched" name="email"
+                [(ngModel)]="userModel.email">
+            <div *ngIf="email.errors && (email.invalid && email.touched)">
+                <small *ngIf="email.errors?.['required']" class="text-danger">Email is required</small>
+                <small *ngIf="email.errors?.['pattern']" class="text-danger">invalid email format</small>
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="password"><b>Password</b></label>
+            <input type="password" required #password="ngModel" minlength="6"
+                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}" id="password"
+                class="form-control" [class.is-invalid]="password.invalid && password.touched" name="password"
+                [(ngModel)]="userModel.password" [ngModelOptions]="{updateOn: 'blur'}" (blur)="password">
+            <div *ngIf="password.errors && (password.dirty || password.touched)">
+                <small *ngIf="password.errors?.['required']" class="text-danger">password is required</small>
+                <small *ngIf="password.errors?.['minlength']" class="text-danger">password must be at least 6 characters
+                    long</small>
+                    <br>
+                <small *ngIf="password.errors['pattern']" class="text-danger">Password must contain at least one
+                    uppercase letter, one lowercase letter, one number, and one special character</small>
+                
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="confirmPassword"><b>Confirm Password</b></label>
+            <input type="password" required #confirmPassword="ngModel" minlength="6" id="confirmPassword"
+                class="form-control" [class.is-invalid]="confirmPassword.invalid && confirmPassword.touched"
+                name="confirmPassword" [(ngModel)]="userModel.confirmPassword" [ngModelOptions]="{updateOn: 'blur'}"
+                (blur)="checkPasswords()">
+            <div *ngIf="confirmPassword.errors && (confirmPassword.dirty || confirmPassword.touched)">
+                <small *ngIf="confirmPassword.errors['required']" class="text-danger">Confirm Password is
+                    required</small>
+                <small *ngIf="confirmPassword.errors['minlength']" class="text-danger">Confirm Password must be at least
+                    6 characters long</small>
+                <small *ngIf="userModel.password !== userModel.confirmPassword && confirmPassword.touched"
+                    class="text-danger">Passwords do not match</small>
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="password"><b>Phone</b></label>
+            <input type="tel" required #phone="ngModel" id="phone" class="form-control"
+                [class.is-invalid]="phone.invalid && phone.touched" name="phone" [(ngModel)]="userModel.phone">
+            <div *ngIf="name.invalid && (name.dirty || name.touched)">
+                <small *ngIf="phone.errors?.['required']" class="text-danger">phone number is required</small>
+            </div>
+        </div>
+        <br>
+        <button [disabled]="userForm.form.invalid" class="btn btn-primary"
+           >Submit</button>
+    </form>
+    <br>
+    <br>
+    <h3>Form Values:</h3>
+    <br>
+    <p>Name: {{ userModel.name }}</p>
+    <p>Email: {{ userModel.email }}</p>
+    <p>Password: {{ userModel.password }}</p>
+    <p>Phone: {{ userModel.phone }}</p>
+</div>

@@ -1,0 +1,113 @@
+/* General Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #000000; 
+    margin: 0;
+    padding: 0;
+    
+}
+.robot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0; 
+    pointer-events: none;
+}
+.robot-img {
+    max-width: 100%;
+    height: auto;
+    opacity: 0.2; 
+    animation: robotMovement 5s infinite;
+}
+@keyframes robotMovement {
+    0% {
+        transform: translate(0, 0);
+    }
+    25% {
+        transform: translate(10px, 10px);
+    }
+    50% {
+        transform: translate(-10px, -10px);
+    }
+    75% {
+        transform: translate(10px, -10px);
+    }
+    100% {
+        transform: translate(-10px, 10px);
+    }
+}
+
+
+.container-fluid {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #141e30;
+    background: -webkit-linear-gradient(to right, #243b55, #141e30);
+    background: linear-gradient(to right, #243b55, #141e30);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #ffffff; 
+}
+
+h1 {
+    font-size: 2.5em;
+    text-align: center;
+    color: #31ea07;
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+}
+
+.form-control {
+    background-color: #2e3b4e;
+    border: 1px solid #3f5161;
+    color: #ffffff;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-control:focus {
+    border-color: #31ea07;
+    box-shadow: 0 0 5px rgba(49, 234, 7, 0.5);
+}
+
+.btn-primary {
+    color: #000000;
+    background-color: #31ea07;
+    border: none;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #28c306;
+    box-shadow: 0 4px 8px rgba(207, 216, 205, 0.2);
+}
+
+.text-danger {
+    color: #ff6b6b;
+}
+
+.is-invalid {
+    border-color: #ff6b6b;
+}
+
+.is-invalid:focus {
+    box-shadow: 0 0 5px rgba(255, 107, 107, 0.5);
+}
+@keyframes boxShadowOnOff {
+    0%, 100% {
+        box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+    }
+    50% {
+        box-shadow: none;
+    }
+}
+p {
+    background-color: #1f2d3d;
+    padding: 10px;
+    border-radius: 5px;
+    animation: boxShadowOnOff 2s infinite; 
+}
